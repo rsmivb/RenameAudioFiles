@@ -5,9 +5,13 @@ branches:
   only:
   - master
 environment:
-  SONAR_TOKEN: 1102ae5d4f8355b439e3b377010b0107fd502446
-  CODECOV_TOKEN: 58f03447-ef78-4040-89e0-24fb4929ae31
-  COVERALLS_REPO_TOKEN: 4EX2wylMwCyoCzoqYni5dI74dIYW8pwPt
+   SONAR_TOKEN:
+    secure: 1102ae5d4f8355b439e3b377010b0107fd502446
+   CODECOV_TOKEN:
+     secure: 58f03447-ef78-4040-89e0-24fb4929ae31
+   COVERALLS_REPO_TOKEN:
+     secure: 4EX2wylMwCyoCzoqYni5dI74dIYW8pwPt
+
 
 dotnet_csproj:
   patch: true
@@ -29,12 +33,15 @@ before_build:
   - nuget restore -v quiet
 
 build_script:
- - dotnet-sonarscanner begin /k:"rsmivb_RenameAudioFiles" /o:"rsmivb-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login=$env:SONAR_TOKEN
+ - dotnet-sonarscanner begin /k:"rsmivb_RenameAudioFiles" /o:"rsmivb-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="1102ae5d4f8355b439e3b377010b0107fd502446"
  - dotnet build RenameAudioFiles.sln -v quiet
- - dotnet-sonarscanner end /d:sonar.login=$env:SONAR_TOKEN
+ - dotnet-sonarscanner end /d:sonar.login="1102ae5d4f8355b439e3b377010b0107fd502446"
 
 test_script:
+  - ps: $env:SONAR_TOKEN
+  - ps: $env:CODECOV_TOKEN
+  - ps: $env:COVERALLS_REPO_TOKEN
   - dotnet build RenameAudioFiles.sln -v quiet
   - coverlet ./FileNameHandlerTest/bin/Debug/netcoreapp3.1/FileNameHandlerTest.dll --target "dotnet" --targetargs "test ./FileNameHandlerTest/FileNameHandlerTest.csproj --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover" --format opencover --output ./testResults/FileNameHandlerTest.xml
-  - ps: codecov -f .\testResults\FileNameHandlerTest.xml -t $env:CODECOV_TOKEN
-  - ps: csmacnz.coveralls --opencover -i ./testResults/FileNameHandlerTest.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
+  - ps: codecov -f .\testResults\FileNameHandlerTest.xml -t "58f03447-ef78-4040-89e0-24fb4929ae31"
+  - ps: csmacnz.coveralls --opencover -i ./testResults/FileNameHandlerTest.xml --repoToken "4EX2wylMwCyoCzoqYni5dI74dIYW8pwPt" --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
