@@ -8,9 +8,9 @@ environment:
    SONAR_TOKEN:
     secure: Vgk2JJs/E58YhjR1gLjj0Au0LKs4+GWjuVqgHVQmPP+kV2WN2hylsxkPii43ITVC
    CODECOV_TOKEN:
-     secure: 0xbrDlIAs6NDcEgALFNFrp6TmfkEU1dzaAMPSjbt3VxD4L+evvkpx+FuYOXfl3Dp
+     secure: 58f03447-ef78-4040-89e0-24fb4929ae31
    COVERALLS_REPO_TOKEN:
-     secure: fH4ci/XoMlkXIG+ZJd6OXl8tPYLKxwKykzyu4vmo/S8PfB4LzP09QdoKQePKixnU
+     secure: 4EX2wylMwCyoCzoqYni5dI74dIYW8pwPt
 
 
 dotnet_csproj:
@@ -36,7 +36,7 @@ build:
   project: RenameAudioFiles.sln
   verbosity: quiet
 
-test_script:
+test:
   - dotnet-sonarscanner begin /k:"rsmivb_RenameAudioFiles" /o:"rsmivb-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="1102ae5d4f8355b439e3b377010b0107fd502446"
   - dotnet build RenameAudioFiles.sln -v quiet
   - coverlet ./FileNameHandlerTest/bin/Debug/netcoreapp3.1/FileNameHandlerTest.dll --target "dotnet" --targetargs "test ./FileNameHandlerTest/FileNameHandlerTest.csproj --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover" --format opencover --output ./testResults/FileNameHandlerTest.xml
