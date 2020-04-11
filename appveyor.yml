@@ -1,0 +1,45 @@
+
+image: Visual Studio 2019
+
+branches:
+  only:
+  - master
+environment:
+   SONAR_TOKEN:
+    secure: Vgk2JJs/E58YhjR1gLjj0Au0LKs4+GWjuVqgHVQmPP+kV2WN2hylsxkPii43ITVC
+   CODECOV_TOKEN:
+     secure: 0xbrDlIAs6NDcEgALFNFrp6TmfkEU1dzaAMPSjbt3VxD4L+evvkpx+FuYOXfl3Dp
+   COVERALLS_REPO_TOKEN:
+     secure: fH4ci/XoMlkXIG+ZJd6OXl8tPYLKxwKykzyu4vmo/S8PfB4LzP09QdoKQePKixnU
+
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+skip_commits:
+  files:
+  - README.md
+
+before_build:
+  - dotnet tool install -g coveralls.net
+  - choco install codecov
+  - dotnet tool install -g dotnet-sonarscanner
+  - dotnet tool install --global coverlet.console
+  - nuget restore -v quiet
+
+build:
+  project: RenameAudioFiles.sln
+  verbosity: quiet
+
+test_script:
+  - dotnet-sonarscanner begin /k:"rsmivb_RenameAudioFiles" /o:"rsmivb-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="1102ae5d4f8355b439e3b377010b0107fd502446"
+  - dotnet build RenameAudioFiles.sln -v quiet
+  - coverlet ./FileNameHandlerTest/bin/Debug/netcoreapp3.1/FileNameHandlerTest.dll --target "dotnet" --targetargs "test ./FileNameHandlerTest/FileNameHandlerTest.csproj --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover" --format opencover --output ./testResults/FileNameHandlerTest.xml
+  - dotnet-sonarscanner end /d:sonar.login="1102ae5d4f8355b439e3b377010b0107fd502446"
+  - ps: codecov -f .\testResults\FileNameHandlerTest.xml -t $env:CODECOV_TOKEN
+  - ps: csmacnz.coveralls --opencover -i ./testResults/FileNameHandlerTest.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID

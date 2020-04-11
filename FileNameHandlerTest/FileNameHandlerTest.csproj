@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StringHandler\FileNameHandler.csproj" />
+    <ProjectReference Include="..\FileNameHandler\FileNameHandler.csproj" />
   </ItemGroup>
 
 </Project>
