@@ -5,7 +5,7 @@ namespace FileNameHandler
 {
     public class StringHandler
     {
-        private TextInfo _textInfo;
+        private readonly TextInfo _textInfo;
 
         public StringHandler(TextInfo info)
         {
