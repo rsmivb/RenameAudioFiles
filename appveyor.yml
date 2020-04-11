@@ -36,7 +36,7 @@ build:
   project: RenameAudioFiles.sln
   verbosity: quiet
 
-test:
+test_script:
   - dotnet-sonarscanner begin /k:"rsmivb_RenameAudioFiles" /o:"rsmivb-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="1102ae5d4f8355b439e3b377010b0107fd502446"
   - dotnet build RenameAudioFiles.sln -v quiet
   - coverlet ./FileNameHandlerTest/bin/Debug/netcoreapp3.1/FileNameHandlerTest.dll --target "dotnet" --targetargs "test ./FileNameHandlerTest/FileNameHandlerTest.csproj --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover" --format opencover --output ./testResults/FileNameHandlerTest.xml
