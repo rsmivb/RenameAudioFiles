@@ -17,4 +17,23 @@
     <ProjectReference Include="..\FileNameHandler\FileNameHandler.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AudioSamples\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AudioSamples\01 - On the wings of the dawn.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\01 Monster Hero.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\03. Different State Of Mind.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\06-Süßer Die Glocken Nie Klingen.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
