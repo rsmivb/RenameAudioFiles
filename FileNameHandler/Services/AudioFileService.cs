@@ -1,12 +1,13 @@
 ﻿using FileNameHandler.Models;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 
 namespace FileNameHandler.Services
 {
     public class AudioFileService : IAudioFileService
     {
-        private readonly char[] SEPARATORS = new char[] { '-', '.', ' ' };
+        private readonly char[] SEPARATORS = new char[] { Constants.HIPHEN, Constants.DOT, Constants.WS };
         private readonly TextInfo _textInfo;
 
         public AudioFileService(TextInfo info)
@@ -23,20 +24,35 @@ namespace FileNameHandler.Services
             };
             foreach (var separator in SEPARATORS)
             {
-                if (input.Contains(separator))
+                if (input.Substring(0,4).Contains(separator))
                 {
                     var splitted = input.Split(separator).Select(x => x.Trim()).ToArray();
                     int trackNumber;
-                    bool isValid = int.TryParse(splitted[0], out trackNumber);
+                    bool isValid = int.TryParse(splitted.FirstOrDefault(), out trackNumber);
                     if (isValid)
                     {
                         audioFile.Track = trackNumber;
-                        audioFile.AudioName = string.Join(" ", splitted.Skip(1).ToArray());
+                        audioFile.AudioName = string.Join(Constants.WS.ToString(), splitted.Skip(1).ToArray());
                     }
                     break;
                 }
             }
             return audioFile;
+        }
+        public Album TransformTo(string rootPath)
+        {
+            Album album = new Album();
+            var albumName = new DirectoryInfo(rootPath).Name;
+            var names = albumName.Split(Constants.HIPHEN).Select(x => x.Trim()).ToArray();
+            album.BandName = names.FirstOrDefault();
+            album.AlbumName = string.Join(Constants.HIPHEN.ToString(), names.Skip(1));
+
+            foreach (var file in Directory.GetFiles(rootPath))
+            {
+                var filename = Path.GetFileNameWithoutExtension(file);
+                album.AudioFiles.Add(ConvertTo(filename));
+            }
+            return album;
         }
     }
 }

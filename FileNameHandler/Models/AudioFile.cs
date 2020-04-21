@@ -16,7 +16,7 @@ namespace FileNameHandler.Models
 
         public override int GetHashCode()
         {
-            int hashCode = -118504466;
+            int hashCode = 983750176;
             hashCode = hashCode * -1521134295 + Track.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AudioName);
             return hashCode;
