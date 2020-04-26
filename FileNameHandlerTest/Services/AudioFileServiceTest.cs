@@ -88,7 +88,7 @@ namespace RenameFileNamesTest
 					new AudioFile
 					{
 						Track = 12,
-						AudioName = "The Tragedy Of Mr Smith"
+						AudioName = "The Tragedy Of Mr.Smith"
 					},
 					new AudioFile
 					{
