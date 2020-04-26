@@ -21,7 +21,7 @@ namespace FileNameHandlerTest.Services
 		public void ExtractAudioFileObjectFromAudioFileTest()
 		{
 			AudioFile expected = new AudioFile { Track = 1, AudioName = "Monster Hero" };
-			var audioFileName = "01 Monster Hero.mp3";
+			const string audioFileName = "01 Monster Hero.mp3";
 			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AudioSamples");
 
 			var current = _service.Get(Path.Combine(path, audioFileName));
@@ -115,7 +115,5 @@ namespace FileNameHandlerTest.Services
 			var current = _service.TransformTo(path);
 			Assert.Equal(expected, current);
 		}
-
-
 	}
 }

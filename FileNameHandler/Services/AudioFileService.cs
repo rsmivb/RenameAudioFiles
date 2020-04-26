@@ -1,4 +1,5 @@
 ﻿using FileNameHandler.Models;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace FileNameHandler.Services
                 {
                     var splitted = input.Split(separator).Select(x => x.Trim()).ToArray();
                     int trackNumber;
-                    bool isValid = int.TryParse(splitted.FirstOrDefault(), out trackNumber);
+                    bool isValid = Int32.TryParse(splitted.FirstOrDefault(), out trackNumber);
                     if (isValid)
                     {
                         audioFile.Track = trackNumber;

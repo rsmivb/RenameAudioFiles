@@ -23,9 +23,9 @@ namespace FileNameHandler.Models
         public override int GetHashCode()
         {
             int hashCode = -914998472;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(BandName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AlbumName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<AudioFile>>.Default.GetHashCode(AudioFiles);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(BandName);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(AlbumName);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<List<AudioFile>>.Default.GetHashCode(AudioFiles);
             return hashCode;
         }
 
