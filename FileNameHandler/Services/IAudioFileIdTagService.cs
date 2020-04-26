@@ -4,7 +4,7 @@ namespace FileNameHandler.Services
 {
     public interface IAudioFileIdTagService
     {
-        AudioFile TranformTo(string audioFilePath);
-        Album TransformTo(string audioFilePath);
+        AudioFile Get(string audioFilePath);
+        Album TransformTo(string albumPath);
     }
 }

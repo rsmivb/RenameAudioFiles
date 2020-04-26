@@ -16,9 +16,10 @@ namespace RenameFileNamesTest
             textInfo = new CultureInfo("en-US", false).TextInfo;
             service = new AudioFileService(textInfo);
         }
-		[Fact]
-		[Trait("Category", "Integration")]
-		public void CreateAlbumObjecTest()
+
+		[Fact(DisplayName ="Create Album")]
+		[Trait("Service", "Audio File")]
+		public void CreateAlbumTest()
 		{
 			var rootPath = @"C:\temp\Axxis - Monster Hero";
 			var expected = new Album

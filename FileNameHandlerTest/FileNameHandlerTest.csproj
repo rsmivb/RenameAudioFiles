@@ -34,6 +34,48 @@
     <None Update="AudioSamples\06-Süßer Die Glocken Nie Klingen.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\01 Monster Hero.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\02 Living as Outlaws.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\03 Rock is My Religion.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\04 Love is Gonna Get You Killed.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\05 Glory of the Brave.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\06 Make Me Fight.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\07 Gonna Be Tough.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\08 Firebird.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\09 We Are Seven.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\10 Give Me Good Times.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\11 All I Want is Rock.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\12 The Tragedy of Mr.Smith.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\13 Rock is My Religion %28Raw Mix%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AudioSamples\Axxis - Monster Hero\14 - All I Want is Rock %28Raw Mix%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

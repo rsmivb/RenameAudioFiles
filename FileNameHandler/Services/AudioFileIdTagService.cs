@@ -7,7 +7,7 @@ namespace FileNameHandler.Services
 {
     public class AudioFileIdTagService : IAudioFileIdTagService
     {
-        public AudioFile TranformTo(string audioFilePath)
+        public AudioFile Get(string audioFilePath)
         {
             var tfile = TagLib.File.Create(audioFilePath);
             return new AudioFile
@@ -17,24 +17,30 @@ namespace FileNameHandler.Services
             };
         }
 
-        public Album TransformTo(string audioFilePath)
-        {
-            var tfile = TagLib.File.Create(audioFilePath);
-            return new Album
-            {
-                AlbumName = tfile.Tag.Album,
-                BandName = tfile.Tag.FirstAlbumArtist,
-
-            };
-        }
-
-        public List<AudioFile> GetAudioFiles(string rootFolderPath)
+        public Album TransformTo(string rootPath)
         {
             var list = new List<AudioFile>();
-            var files = Directory.GetFiles(rootFolderPath);
+            Album album = new Album();
 
+            var albumDirectory = new DirectoryInfo(rootPath);
+            foreach (var file in albumDirectory.GetFiles())
+            {
+                var fileTag = GetTag(file.FullName);
+                album.AlbumName = album.AlbumName ?? fileTag.Album;
+                album.BandName = album.BandName ?? fileTag.FirstAlbumArtist;
+                list.Add(new AudioFile
+                {
+                    AudioName = fileTag.Title,
+                    Track = (int) fileTag.Track
+                });
+            }
+            album.AudioFiles = list;
+            return album;
+        }
 
-            return list;
+        public TagLib.Tag GetTag(string audioFilePath)
+        {
+            return TagLib.File.Create(audioFilePath).Tag;
         }
     }
 }
