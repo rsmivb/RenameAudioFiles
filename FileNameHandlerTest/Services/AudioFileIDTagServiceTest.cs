@@ -3,13 +3,12 @@ using FileNameHandler.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xunit;
 
 namespace FileNameHandlerTest.Services
 {
-    public class AudioFileIdTagServiceTest
-    {
+	public class AudioFileIdTagServiceTest
+	{
 		private readonly IAudioFileIdTagService _service;
 
 		public AudioFileIdTagServiceTest()
@@ -17,15 +16,15 @@ namespace FileNameHandlerTest.Services
 			_service = new AudioFileIdTagService();
 		}
 
-		[Fact(DisplayName="Get AudioFile from IdTag")]
+		[Fact(DisplayName = "Get AudioFile from IdTag")]
 		[Trait("Audio File Id Tag", "Service")]
 		public void ExtractAudioFileObjectFromAudioFileTest()
 		{
 			AudioFile expected = new AudioFile { Track = 1, AudioName = "Monster Hero" };
 			var audioFileName = "01 Monster Hero.mp3";
-			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AudioSamples");
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AudioSamples");
 
-			var current = _service.Get(Path.Combine(path,audioFileName));
+			var current = _service.Get(Path.Combine(path, audioFileName));
 
 			Assert.Equal(expected, current);
 		}

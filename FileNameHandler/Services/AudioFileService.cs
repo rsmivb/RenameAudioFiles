@@ -24,7 +24,7 @@ namespace FileNameHandler.Services
             };
             foreach (var separator in SEPARATORS)
             {
-                if (input.Substring(0,4).Contains(separator))
+                if (input.Substring(0, 4).Contains(separator))
                 {
                     var splitted = input.Split(separator).Select(x => x.Trim()).ToArray();
                     int trackNumber;

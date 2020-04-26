@@ -31,7 +31,7 @@ namespace FileNameHandler.Services
                 list.Add(new AudioFile
                 {
                     AudioName = fileTag.Title,
-                    Track = (int) fileTag.Track
+                    Track = (int)fileTag.Track
                 });
             }
             album.AudioFiles = list;
